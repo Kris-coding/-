@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#17171c" />
+    <title>Wechat · 角色聊天</title>
+    <link rel="stylesheet" href="./styles.css?v=14" />
+  </head>
+  <body>
+    <div class="phone-stage" id="phoneStage">
+      <div class="phone-status" aria-hidden="true"><span id="phoneClock">9:41</span><span class="dynamic-island"></span></div>
+      <section class="home-screen" id="homeScreen" aria-label="手机桌面">
+        <div class="home-heading"><span id="homeDate"></span></div>
+        <div class="home-apps">
+          <button class="home-app" data-app-id="wechat" id="launchWechat" type="button" aria-label="打开 Wechat"><span class="app-icon wechat-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path fill="white" d="M27 13c-13 0-23 8-23 19 0 6 3 11 8 15l-2 8 9-5c3 1 5 1 8 1 2 0 3 0 5-1-3-3-5-7-5-11 0-9 8-16 19-17-4-5-11-9-19-9Zm-10 13a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm17 0a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/><path fill="white" d="M46 25c-10 0-18 6-18 14s8 14 18 14h3l8 4-2-7c3-2 5-6 5-11 0-8-6-14-14-14Zm-7 9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm14 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"/></svg></span><span>Wechat</span></button>
+          <button class="home-app" data-app-id="settings" id="launchSettings" type="button" aria-label="打开设置"><span class="app-icon settings-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path fill="white" d="m27 5 2 6a21 21 0 0 1 6 0l2-6 7 3-2 6a21 21 0 0 1 4 4l6-2 3 7-6 2a21 21 0 0 1 0 6l6 2-3 7-6-2a21 21 0 0 1-4 4l2 6-7 3-2-6a21 21 0 0 1-6 0l-2 6-7-3 2-6a21 21 0 0 1-4-4l-6 2-3-7 6-2a21 21 0 0 1 0-6l-6-2 3-7 6 2a21 21 0 0 1 4-4l-2-6 7-3Zm5 15a12 12 0 1 0 0 24 12 12 0 0 0 0-24Z" transform="translate(0 4) scale(.88)"/></svg></span><span>设置</span></button>
+          <button class="home-app" data-app-id="appearance" id="launchAppearance" type="button" aria-label="打开外观"><span class="app-icon appearance-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path fill="white" d="M33 7C17 7 6 18 6 32s12 25 26 25c6 0 10-4 10-9 0-4-3-6-3-9 0-2 2-3 5-3h6c5 0 8-4 8-9C58 16 47 7 33 7ZM17 30a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm8 17a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm10-27a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm13 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg></span><span>外观</span></button>
+          <button class="home-app" data-app-id="worldbooks" id="launchWorldbooks" type="button" aria-label="打开世界书"><span class="app-icon worldbooks-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path fill="white" d="M9 11c9-3 17-2 23 3 6-5 14-6 23-3v40c-9-3-17-2-23 3-6-5-14-6-23-3V11Zm5 5v30c6-1 11 0 15 3V19c-4-3-9-4-15-3Zm36 0c-6-1-11 0-15 3v30c4-3 9-4 15-3V16Z"/></svg></span><span>世界书</span></button>
+        </div>
+        <div class="home-dock"><span class="dock-label">轻点图标打开 · 长按拖动排序</span></div>
+      </section>
+    <div class="app-shell" hidden>
+      <aside class="sidebar" id="sidebar">
+        <header class="brand-bar">
+          <button class="icon-button home-nav" id="homeFromList" type="button" aria-label="返回桌面">⌂</button>
+          <button class="profile-button" id="openSettings" aria-label="我的资料">
+            <span class="avatar avatar-user" id="userAvatar">我</span>
+          </button>
+          <button class="brand-copy brand-button" id="editBrand" type="button" aria-label="自定义主页文字" title="自定义主页文字">
+            <strong id="brandTitle">Wechat</strong>
+            <span id="brandSubtitle">要和谁喵喵天？</span>
+          </button>
+          <button class="icon-button" id="addCharacter" aria-label="添加人物" title="添加人物">＋</button>
+        </header>
+
+        <div class="search-wrap">
+          <input id="searchCharacters" type="search" placeholder="搜索人物" autocomplete="off" />
+          <button class="group-launch" id="addGroup" type="button">＋ 发起群聊</button>
+        </div>
+
+        <nav class="character-list" id="characterList" aria-label="聊天列表"></nav>
+
+        <footer class="sidebar-footer"><span class="local-badge">仅本机 · 设置请返回桌面</span></footer>
+      </aside>
+
+      <main class="chat-panel" id="chatPanel">
+        <header class="chat-header">
+          <button class="icon-button mobile-only" id="backToList" aria-label="返回联系人">‹</button>
+          <button class="icon-button home-nav" id="homeFromChat" type="button" aria-label="返回桌面">⌂</button>
+          <div class="active-person">
+            <span class="avatar" id="activeAvatar">角</span>
+            <div>
+              <strong id="activeName">选择一个人物</strong>
+              <span id="activeStatus">开始一段对话</span>
+            </div>
+          </div>
+          <button class="chat-edit-button" id="editCharacter" aria-label="编辑人物" title="编辑人物"></button>
+        </header>
+
+        <section class="messages" id="messages" aria-live="polite"></section>
+
+        <div class="selection-toolbar" id="selectionToolbar" hidden>
+      <strong id="selectionCount">已选择 0 条</strong>
+      <button class="secondary-button" id="selectDelete" type="button">删除</button>
+      <button class="secondary-button" id="selectRecall" type="button" hidden>撤回</button>
+      <button class="secondary-button" id="selectEdit" type="button" hidden>编辑修改</button>
+      <button class="primary-button" id="selectRetry" type="button">重回所选回复</button>
+      <button class="secondary-button" id="selectCancel" type="button">取消</button>
+        </div>
+
+        <form class="composer" id="composer">
+          <textarea id="messageInput" rows="1" placeholder="写点什么……" maxlength="4000"></textarea>
+          <button class="send-button" id="sendMessage" type="submit" aria-label="发送消息">发送</button>
+          <button class="reply-button" id="requestReply" type="button" aria-label="让朋友回复" title="让朋友回复" disabled>🫧</button>
+        </form>
+      </main>
+    </div>
+    <div class="phone-home-indicator" aria-hidden="true"></div>
+
+    <div class="modal-backdrop" id="brandModal" hidden>
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="brandModalTitle">
+        <header class="modal-header"><div><span class="eyebrow">主页文字</span><h2 id="brandModalTitle">自定义标题</h2></div><button class="icon-button close-modal" type="button" aria-label="关闭">×</button></header>
+        <form id="brandForm" class="form-stack">
+          <label>主标题<input id="brandTitleInput" maxlength="40" required /></label>
+          <label>副标题<input id="brandSubtitleInput" maxlength="80" required /></label>
+          <div class="form-actions"><button class="secondary-button close-modal" type="button">取消</button><button class="primary-button" type="submit">保存</button></div>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="groupModal" hidden>
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="groupModalTitle">
+        <header class="modal-header">
+          <div><span class="eyebrow">一起聊天</span><h2 id="groupModalTitle">发起群聊</h2></div>
+          <button class="icon-button close-modal" type="button" aria-label="关闭">×</button>
+        </header>
+        <form id="groupForm" class="form-stack">
+          <input id="groupId" type="hidden" />
+          <div class="avatar-editor"><span class="avatar avatar-large group-avatar" id="groupAvatarPreview">群</span><div><label class="file-button" for="groupAvatarInput">自定义群头像</label><input id="groupAvatarInput" type="file" accept="image/*" hidden /><button class="link-button" id="removeGroupAvatar" type="button">使用成员头像拼图</button></div></div>
+          <label>群聊名称<input id="groupName" maxlength="40" placeholder="例如：周末小聚" /></label>
+          <fieldset class="worldbook-bindings"><legend>选择角色（至少两位）</legend><div id="groupMembers" class="group-members"></div></fieldset>
+          <p class="field-note">点 🫧 后，群中角色会轮流说话，也能根据人物关系回应彼此。</p>
+          <div class="form-actions split-actions">
+            <button class="danger-button" id="deleteGroup" type="button">删除群聊</button>
+            <div><button class="secondary-button close-modal" type="button">取消</button><button class="primary-button" type="submit">保存群聊</button></div>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="characterModal" hidden>
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="characterModalTitle">
+        <header class="modal-header">
+          <div>
+            <span class="eyebrow">人物资料</span>
+            <h2 id="characterModalTitle">添加人物</h2>
+          </div>
+          <button class="icon-button close-modal" type="button" aria-label="关闭">×</button>
+        </header>
+        <form id="characterForm" class="form-stack">
+          <input type="hidden" id="characterId" />
+          <div class="avatar-editor">
+            <span class="avatar avatar-large" id="characterAvatarPreview">角</span>
+            <div>
+              <label class="file-button" for="characterAvatarInput">选择头像</label>
+              <input id="characterAvatarInput" type="file" accept="image/*" hidden />
+              <button class="link-button" id="removeCharacterAvatar" type="button">移除图片</button>
+            </div>
+          </div>
+          <label>姓名<input id="characterName" required maxlength="40" placeholder="人物姓名" /></label>
+          <label>核心特点（一句话介绍）<input id="characterSubtitle" maxlength="120" placeholder="例如：安静但很会照顾人的朋友" /></label>
+          <label>个性签名<input id="characterSignature" maxlength="80" placeholder="显示在聊天页名字下方" /></label>
+          <label>人物设定<textarea id="characterPersona" rows="5" placeholder="性格、经历、说话方式、与你的关系……"></textarea></label>
+          <label>开场消息<textarea id="characterGreeting" rows="3" placeholder="第一次打开对话时显示的消息"></textarea></label>
+          <label class="checkbox-setting"><input id="showActionBubbles" type="checkbox" checked />单独显示居中的动作气泡</label>
+          <fieldset class="worldbook-bindings">
+            <legend>绑定世界书</legend>
+            <div id="characterWorldBooks"></div>
+            <p class="field-note">可在桌面上的“世界书”应用创建和编辑。</p>
+          </fieldset>
+          <fieldset class="worldbook-bindings"><legend>OOC 纠偏记录</legend><div id="characterCorrections" class="correction-list"></div><p class="field-note">重回角色回复时保存的说明会用于今后的对话。可在这里修改或删除。</p></fieldset>
+          <div class="form-actions split-actions">
+            <button class="danger-button" id="deleteCharacter" type="button">删除人物</button>
+            <div>
+              <button class="secondary-button close-modal" type="button">取消</button>
+              <button class="primary-button" type="submit">保存</button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="settingsModal" hidden>
+      <section class="modal-card modal-wide" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+        <header class="modal-header">
+          <div>
+            <span class="eyebrow">当前设备</span>
+            <h2 id="settingsModalTitle">设置</h2>
+          </div>
+          <button class="icon-button close-modal" type="button" aria-label="关闭">×</button>
+        </header>
+
+        <div class="settings-tabs" role="tablist">
+          <button class="tab-button is-active" type="button" data-tab="identity">我的资料</button>
+          <button class="tab-button" type="button" data-tab="api">API</button>
+          <button class="tab-button" type="button" data-tab="desktop">桌面</button>
+          <button class="tab-button" type="button" data-tab="relationships">关系网</button>
+          <button class="tab-button" type="button" data-tab="data">数据</button>
+        </div>
+
+        <form id="settingsForm" class="form-stack">
+          <section class="tab-panel is-active" data-panel="identity">
+            <div class="avatar-editor">
+              <span class="avatar avatar-large avatar-user" id="userAvatarPreview">我</span>
+              <div>
+                <label class="file-button" for="userAvatarInput">选择头像</label>
+                <input id="userAvatarInput" type="file" accept="image/*" hidden />
+                <button class="link-button" id="removeUserAvatar" type="button">移除图片</button>
+              </div>
+            </div>
+            <label>我的称呼<input id="userName" maxlength="40" placeholder="角色如何称呼你" /></label>
+            <label>我的设定<textarea id="userPersona" rows="5" placeholder="你的身份、性格以及希望角色了解的信息"></textarea></label>
+          </section>
+
+          <section class="tab-panel" data-panel="api">
+            <div class="notice-card">
+              <strong>在当前设备连接你的模型</strong>
+              <p>API Key 只保存在当前浏览器，并直接发送给你选择的模型服务。导出备份不会包含 Key。留空时使用演示回复。</p>
+            </div>
+            <label>API 提供商
+              <select id="apiProvider">
+                <option value="deepseek">DeepSeek</option>
+                <option value="claude">Claude</option>
+                <option value="custom">自定义 OpenAI 兼容接口</option>
+              </select>
+            </label>
+            <label>API 地址<input id="apiEndpoint" type="url" placeholder="https://…/v1/chat/completions" /></label>
+            <label>API Key<input id="apiKey" type="password" autocomplete="off" placeholder="sk-…" /></label>
+            <label>模型名称<input id="apiModel" placeholder="例如 deepseek-flash" /></label>
+            <div class="model-picker">
+              <button class="secondary-button" id="fetchModels" type="button">拉取可用模型</button>
+              <label>从列表选择模型
+                <select id="modelChoices" disabled><option value="">先拉取模型列表</option></select>
+              </label>
+              <p class="field-note" id="modelStatus">自定义接口会根据聊天端点尝试读取同一服务的 /models 列表。</p>
+            </div>
+            <label>回复随机度 <output id="temperatureValue">0.9</output><input id="apiTemperature" type="range" min="0" max="2" step="0.1" /></label>
+          </section>
+
+          <section class="tab-panel" data-panel="desktop">
+            <div class="wallpaper-setting"><label>手机桌面壁纸<input id="homeWallpaperInput" type="file" accept="image/*" /></label><button class="secondary-button" id="clearHomeWallpaper" type="button">移除桌面壁纸</button><p class="field-note" id="homeWallpaperStatus">未选择图片，使用默认渐变壁纸。</p></div>
+            <fieldset class="icon-settings"><legend>软件封面</legend><p class="field-note">为桌面上的每个软件上传图片。建议使用正方形图片，仅保存在当前设备。</p><div id="appIconSettings"></div></fieldset>
+          </section>
+          <section class="tab-panel" data-panel="appearance">
+            <div class="theme-grid">
+              <label>强调色<input id="accentColor" type="color" /></label>
+              <label>背景色<input id="backgroundColor" type="color" /></label>
+              <label>面板色<input id="panelColor" type="color" /></label>
+              <label>朋友气泡色<input id="incomingBubbleColor" type="color" /></label>
+              <label>动作气泡色<input id="actionBubbleColor" type="color" /></label>
+              <label>主要文字色<input id="textColor" type="color" /></label>
+              <label>次要文字色<input id="mutedColor" type="color" /></label>
+              <label>我的气泡文字色<input id="outgoingTextColor" type="color" /></label>
+              <label>气泡圆角 <output id="radiusValue">18px</output><input id="bubbleRadius" type="range" min="4" max="30" step="1" /></label>
+            </div>
+            <label>字体
+              <select id="fontFamily">
+                <option value="system">系统字体</option>
+                <option value="serif">书卷衬线体</option>
+                <option value="rounded">柔和圆体</option>
+                <option value="mono">等宽字体</option>
+                <option value="custom">已上传的自定义字体</option>
+              </select>
+            </label>
+            <div class="font-upload-block">
+              <div class="data-actions">
+                <label class="secondary-button file-label" for="customFontInput">上传字体文件</label>
+                <input id="customFontInput" type="file" accept=".ttf,.otf,.woff,.woff2,font/ttf,font/otf,font/woff,font/woff2" hidden />
+                <button class="secondary-button" id="removeCustomFont" type="button">移除自定义字体</button>
+              </div>
+              <p class="field-note" id="customFontStatus">支持 TTF、OTF、WOFF 和 WOFF2。字体文件仅保存在当前设备。</p>
+            </div>
+            <label>聊天背景图片<input id="chatBackgroundInput" type="file" accept="image/*" /></label>
+            <button class="secondary-button" id="clearChatBackground" type="button">移除聊天背景</button>
+          </section>
+
+          <section class="tab-panel" data-panel="worldbooks">
+            <div class="notice-card"><strong>世界书</strong><p>每个角色可绑定多本世界书。绑定内容会随人物设定一起提供给模型。</p></div>
+            <fieldset class="worldbook-bindings"><legend>内置世界书 · 对所有角色生效</legend><div id="defaultBookToggles" class="default-book-toggles"></div><p class="field-note">可单独启用或停用。内容来自你提供的两份 TXT，启用后会发送给所配置的模型接口。</p></fieldset>
+            <div class="worldbook-list" id="worldbookList"></div>
+            <input id="worldbookId" type="hidden" />
+            <label>名称<input id="worldbookName" maxlength="60" placeholder="例如：故事背景" /></label>
+            <label>内容<textarea id="worldbookContent" rows="7" placeholder="世界观、人物关系、共同经历、叙事规则……"></textarea></label>
+            <div class="data-actions">
+              <button class="primary-button" id="saveWorldbook" type="button">保存世界书</button>
+              <button class="secondary-button" id="newWorldbook" type="button">新建空白世界书</button>
+              <button class="danger-button" id="deleteWorldbook" type="button" hidden>删除当前世界书</button>
+            </div>
+          </section>
+
+          <section class="tab-panel" data-panel="relationships">
+            <div class="notice-card"><strong>人物关系网</strong><p>记录两人的身份、相识经过、共同经历和彼此的称呼。角色回复时会参考这些信息。</p></div>
+            <div class="relationship-list" id="relationshipList"></div>
+            <div class="relationship-pair">
+              <label>人物一<select id="relationshipFirst"></select></label>
+              <label>人物二<select id="relationshipSecond"></select></label>
+            </div>
+            <fieldset class="relationship-types">
+              <legend>关系身份（可多选）</legend>
+              <label><input type="checkbox" value="朋友" />朋友</label>
+              <label><input type="checkbox" value="恋人" />恋人</label>
+              <label><input type="checkbox" value="前任" />前任</label>
+              <label><input type="checkbox" value="同事" />同事</label>
+              <label><input type="checkbox" value="家人" />家人</label>
+              <label><input type="checkbox" value="室友" />室友</label>
+              <label><input type="checkbox" value="竞争对手" />竞争对手</label>
+            </fieldset>
+            <label>自定义身份<input id="relationshipCustom" placeholder="多个身份用逗号分隔，例如：青梅竹马、队友" /></label>
+            <label>两人的背景与共同经历<textarea id="relationshipBackground" rows="5" placeholder="他们怎么认识？相处过什么事？彼此有什么默契或矛盾？"></textarea></label>
+            <label><span id="firstCallsSecondLabel">人物一如何称呼人物二</span><input id="firstCallsSecond" maxlength="80" placeholder="例如：小林、学长" /></label>
+            <label><span id="secondCallsFirstLabel">人物二如何称呼人物一</span><input id="secondCallsFirst" maxlength="80" placeholder="例如：阿鹭" /></label>
+            <div class="data-actions">
+              <button class="primary-button" id="saveRelationship" type="button">保存关系</button>
+              <button class="danger-button" id="deleteRelationship" type="button" hidden>删除这组关系</button>
+            </div>
+          </section>
+
+          <section class="tab-panel" data-panel="data">
+            <div class="notice-card">
+              <strong>每台设备各自保存</strong>
+              <p>导出文件可以把人物、设定、主题和聊天记录手动带到另一台设备。</p>
+            </div>
+            <div class="data-actions">
+              <button class="secondary-button" id="exportData" type="button">导出全部数据</button>
+              <label class="secondary-button file-label" for="importData">导入数据</label>
+              <input id="importData" type="file" accept="application/json" hidden />
+              <button class="danger-button" id="clearChats" type="button">清空聊天记录</button>
+            </div>
+          </section>
+
+          <div class="form-actions">
+            <button class="secondary-button close-modal" type="button">取消</button>
+            <button class="primary-button" id="saveSettingsButton" type="submit">保存设置</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="cropModal" hidden>
+      <section class="modal-card crop-modal" role="dialog" aria-modal="true" aria-labelledby="cropModalTitle">
+        <header class="modal-header"><div><span class="eyebrow">头像</span><h2 id="cropModalTitle">选择头像区域</h2></div><button class="icon-button" id="closeCrop" type="button" aria-label="取消裁剪">×</button></header>
+        <div class="form-stack">
+          <p class="field-note">拖动图片调整位置，滑动下方刻度放大或缩小。方框中的画面会成为头像。</p>
+          <canvas id="cropCanvas" width="320" height="320" aria-label="拖动图片选择头像区域"></canvas>
+          <label>缩放<input id="cropZoom" type="range" min="1" max="3" step="0.01" value="1" /></label>
+          <div class="form-actions"><button class="secondary-button" id="cancelCrop" type="button">取消</button><button class="primary-button" id="applyCrop" type="button">使用这部分</button></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="retryModal" hidden>
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="retryModalTitle">
+        <header class="modal-header"><div><span class="eyebrow">OOC 纠偏</span><h2 id="retryModalTitle">重回所选回复</h2></div><button class="icon-button close-modal" type="button" aria-label="关闭">×</button></header>
+        <form class="form-stack" id="retryForm">
+          <p class="field-note">所选回复会被替换，旧内容不会进入这次生成的记忆。纠偏说明会加入对应角色设定，可随时在人物设置中修改。</p>
+          <label>希望角色怎样回复<textarea id="retryGuidance" rows="4" placeholder="例如：语气更犹豫一点，不要突然变得很热情"></textarea></label>
+          <div class="form-actions"><button class="secondary-button close-modal" type="button">取消</button><button class="primary-button" type="submit">重新生成并保存纠偏</button></div>
+        </form>
+      </section>
+    </div>
+    <div class="modal-backdrop" id="editMessageModal" hidden><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="editMessageTitle"><header class="modal-header"><div><span class="eyebrow">我的消息</span><h2 id="editMessageTitle">编辑消息</h2></div><button class="icon-button close-modal" type="button" aria-label="关闭">×</button></header><form class="form-stack" id="editMessageForm"><p class="field-note">保存后，角色之后只会看到修改后的内容；原消息的直接回复会移除。</p><label>消息内容<textarea id="editedMessageContent" rows="5" required maxlength="4000"></textarea></label><div class="form-actions"><button class="secondary-button close-modal" type="button">取消</button><button class="primary-button" type="submit">保存修改</button></div></form></section></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+    <script src="./app.js?v=14"></script>
+  </body>
+</html>
