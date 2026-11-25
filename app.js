@@ -13,7 +13,7 @@ const defaultBooksReady = Promise.all(DEFAULT_BOOKS.map(async (book) => {
 }));
 
 const defaults = {
-  user: { name: "陆鹭", persona: "", avatar: "" },
+  user: { name: "Y/N", persona: "", avatar: "" },
   settings: {
     provider: "deepseek",
     endpoint: "https://api.deepseek.com/chat/completions",
