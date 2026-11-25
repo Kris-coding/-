@@ -394,8 +394,17 @@ input[type="range"] { accent-color: var(--accent); box-shadow: none; }
 @media (max-width: 720px) { .selection-toolbar { padding: 10px 12px; } .selection-toolbar strong { width: 100%; } }
 
 /* The website behaves like two apps on one iPhone-style home screen. */
-body { display: grid; place-items: center; background: radial-gradient(circle at 75% 12%, #777b92 0, transparent 34%), #11131e; }
-.phone-stage { position: relative; isolation: isolate; width: min(430px, 100vw); height: min(900px, 100dvh); overflow: hidden; border: 9px solid #16171b; border-radius: 55px; background: #d5d8eb; box-shadow: 0 30px 90px #0008, 0 0 0 2px #666974; }
+body { 
+  display: block; 
+}
+.phone-stage { 
+  width: 100vw; 
+  height: 100dvh; 
+  border: 0; 
+  border-radius: 0; 
+  box-shadow: none; 
+  background: #d5d8eb;
+}
 .phone-stage[data-screen="wechat"] { background: var(--panel); }
 .phone-status { position: absolute; z-index: 8; top: 0; left: 0; right: 0; height: 44px; padding: 12px 29px 0; display: flex; justify-content: space-between; align-items: flex-start; color: #fff; font: 650 14px/1 var(--font); text-shadow: 0 1px 5px #0006; pointer-events: none; }
 .dynamic-island { position: absolute; top: 6px; left: 50%; width: 112px; height: 28px; border-radius: 30px; background: #111216; transform: translateX(-50%); box-shadow: inset 0 0 1px #222; }
