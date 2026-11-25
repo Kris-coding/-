@@ -495,3 +495,18 @@ body { display: block; }
   .app-shell.show-chat .chat-panel { transform: translateX(0); }
   .app-shell .mobile-only { display: grid; }
 }
+
+/* 粉色卡通图标背景 */
+.wechat-icon { 
+  background: linear-gradient(145deg, #ffb3d1, #ff6b9d) !important; 
+}
+.settings-icon { 
+  background: linear-gradient(150deg, #ffa8c5, #ff7ba8) !important; 
+}
+.appearance-icon { 
+  background: linear-gradient(145deg, #ff9eb5, #ff8bb8) !important; 
+}
+.worldbooks-icon { 
+  background: linear-gradient(145deg, #ffb3d1, #ff6b9d) !important; 
+}
+
